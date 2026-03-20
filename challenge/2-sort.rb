@@ -1,32 +1,30 @@
-###
-#
-#  Sort integer arguments (ascending) 
-#
-###
+#!/usr/bin/env ruby
 
-result = []
-ARGV.each do |arg|
-    # skip if not integer
-    next if arg !~ /^-?[0-9]+$/
+# Remove the first argument (script name)
+args = ARGV
 
-    # convert to integer
-    i_arg = arg.to_i
-    
-    # insert result at the right position
-    is_inserted = false
-    i = 0
-    l = result.size
-    while !is_inserted && i < l do
-        if result[i] < i_arg
-            i += 1
-        else
-            # result.insert(i - 1, i_arg)
-            result.insert(i, i_arg)
-            is_inserted = true
-            break
-        end
-    end
-    result << i_arg if !is_inserted
+# Separate integers and strings
+integers = []
+strings = []
+
+args.each do |arg|
+  if arg.match?(/^-?\d+$/)
+    integers << arg.to_i
+  else
+    strings << arg
+  end
 end
 
-puts result
+# Sort integers ascending
+integers.sort!
+
+# Sort strings alphabetically
+strings.sort!
+
+# Combine results: integers first, then strings
+result = integers + strings
+
+# Print each element on new line
+result.each do |item|
+  puts item
+end
