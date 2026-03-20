@@ -4,16 +4,12 @@ import sys
 
 n = int(sys.argv[1])
 
-result = []
-
 for i in range(1, n + 1):
     if i % 15 == 0:
-        result.append("FizzBuzz")
+        print("FizzBuzz", end=" ")
     elif i % 3 == 0:
-        result.append("Fizz")
+        print("Fizz", end=" ")
     elif i % 5 == 0:
-        result.append("Buzz")
+        print("Buzz", end=" ")
     else:
-        result.append(str(i))
-
-print(" ".join(result))
+        print(i, end=" ")
